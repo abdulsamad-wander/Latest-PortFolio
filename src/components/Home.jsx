@@ -6,6 +6,7 @@ import myimage from "../layout/myimage.png";
 import { NavLink } from "react-router-dom";
 import mycv from '../layout/mycv.jpg'
 import Projects from "./Projects";
+import Experience from "./Experience";
 const Home = () => {
   return (
     <><div
@@ -80,6 +81,7 @@ const Home = () => {
         />
       </div>
     </div>
+    <Experience/>
     <Projects/>
     </>
     
