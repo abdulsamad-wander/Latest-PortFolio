@@ -30,6 +30,7 @@ const Home = () => {
           </div>
           <span>
             <span className="text-white">, I am a{" "}</span>
+             <span className="inline md:hidden text-blue-400">Developer</span>
             <span className="hidden md:inline text-blue-400">
               <ReactTyped
                 strings={[" Developer", "Engineer", "Programmer"]}

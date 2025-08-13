@@ -1,10 +1,9 @@
 "use client";
 
 import { Database, Globe, Server, Zap, Code, Lightbulb } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card"; // if you don't use "@/..." alias, switch to a relative path
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -101,71 +100,47 @@ export default function AboutSection() {
   const getColorClasses = (color) => {
     const colors = {
       blue: {
-        border: "border-l-blue-600 dark:border-l-blue-400",
-        icon: "text-blue-600 dark:text-blue-400",
-        badge: "bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-800/60",
+        border: "border-l-blue-600",
+        icon: "text-blue-600",
+        badge: "bg-blue-50 text-blue-700 hover:bg-blue-100",
       },
       green: {
-        border: "border-l-green-600 dark:border-l-green-400",
-        icon: "text-green-600 dark:text-green-400",
-        badge: "bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900/50 dark:text-green-300 dark:hover:bg-green-800/60",
+        border: "border-l-green-600",
+        icon: "text-green-600",
+        badge: "bg-green-50 text-green-700 hover:bg-green-100",
       },
       purple: {
-        border: "border-l-purple-600 dark:border-l-purple-400",
-        icon: "text-purple-600 dark:text-purple-400",
-        badge: "bg-purple-50 text-purple-700 hover:bg-purple-100 dark:bg-purple-900/50 dark:text-purple-300 dark:hover:bg-purple-800/60",
+        border: "border-l-purple-600",
+        icon: "text-purple-600",
+        badge: "bg-purple-50 text-purple-700 hover:bg-purple-100",
       },
       orange: {
-        border: "border-l-orange-600 dark:border-l-orange-400",
-        icon: "text-orange-600 dark:text-orange-400",
-        badge: "bg-orange-50 text-orange-700 hover:bg-orange-100 dark:bg-orange-900/50 dark:text-orange-300 dark:hover:bg-orange-800/60",
+        border: "border-l-orange-600",
+        icon: "text-orange-600",
+        badge: "bg-orange-50 text-orange-700 hover:bg-orange-100",
       },
     };
-    return colors[color];
+    return colors[color] || colors.blue;
   };
 
   return (
-    <section 
-      className="py-16 max-w-6xl mx-auto overflow-hidden bg-white dark:bg-gray-900 px-4 md:px-10"
-      ref={ref}
-    >
+    <section className="py-16 px-4 max-w-6xl mx-auto overflow-hidden" ref={ref}>
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 w-32 h-32 bg-blue-100 dark:bg-blue-900/30 rounded-full opacity-20"
-          animate={{
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
+          className="absolute top-20 left-10 w-32 h-32 bg-blue-100 rounded-full opacity-20"
+          animate={{ y: [0, -20, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute top-40 right-20 w-24 h-24 bg-purple-100 dark:bg-purple-900/30 rounded-full opacity-20"
-          animate={{
-            y: [0, 20, 0],
-            x: [0, -10, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 2,
-          }}
+          className="absolute top-40 right-20 w-24 h-24 bg-purple-100 rounded-full opacity-20"
+          animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
         <motion.div
-          className="absolute bottom-20 left-1/4 w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full opacity-20"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
+          className="absolute bottom-20 left-1/4 w-16 h-16 bg-green-100 rounded-full opacity-20"
+          animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
@@ -175,6 +150,7 @@ export default function AboutSection() {
         animate={isInView ? "visible" : "hidden"}
         className="relative z-10"
       >
+        {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-12">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
@@ -192,22 +168,23 @@ export default function AboutSection() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* About Text */}
           <motion.div variants={itemVariants} className="space-y-6">
             <motion.div className="space-y-4" whileHover={{ x: 10 }} transition={{ duration: 0.3 }}>
               <motion.div className="flex items-center space-x-3 mb-4">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 >
-                  <Code className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  <Code className="w-8 h-8 text-blue-600" />
                 </motion.div>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                <h3 className="text-2xl font-semibold text-gray-100">
                   Full Stack Developer
                 </h3>
               </motion.div>
 
               <motion.p
-                className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+                className="text-lg text-gray-300 leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -218,7 +195,7 @@ export default function AboutSection() {
               </motion.p>
 
               <motion.p
-                className="text-gray-600 dark:text-gray-300 leading-relaxed"
+                className="text-gray-300 leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
@@ -232,24 +209,17 @@ export default function AboutSection() {
             <motion.div className="space-y-4" variants={itemVariants}>
               <div className="flex items-center space-x-3">
                 <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
+                  animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <Lightbulb className="w-6 h-6 text-yellow-500 dark:text-yellow-400" />
+                  <Lightbulb className="w-6 h-6 text-yellow-500" />
                 </motion.div>
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                <h4 className="text-xl font-semibold text-gray-100">
                   What I Bring to the Table:
                 </h4>
               </div>
 
-              <motion.ul className="space-y-2 text-gray-600 dark:text-gray-300">
+              <motion.ul className="space-y-2 text-gray-300">
                 {[
                   "End-to-end application development with modern frameworks",
                   "Database design and optimization across multiple platforms",
@@ -265,13 +235,9 @@ export default function AboutSection() {
                     whileHover={{ x: 10, transition: { duration: 0.2 } }}
                   >
                     <motion.span
-                      className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"
+                      className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"
                       animate={{ scale: [1, 1.5, 1] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
-                        delay: index * 0.2,
-                      }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
                     />
                     <span>{item}</span>
                   </motion.li>
@@ -280,6 +246,7 @@ export default function AboutSection() {
             </motion.div>
           </motion.div>
 
+          {/* Skills Cards */}
           <motion.div className="space-y-6" variants={containerVariants}>
             {skillCards.map((card, index) => {
               const colorClasses = getColorClasses(card.color);
@@ -289,16 +256,10 @@ export default function AboutSection() {
                 <motion.div
                   key={card.title}
                   variants={cardVariants}
-                  whileHover={{
-                    scale: 1.02,
-                    y: -5,
-                    transition: { duration: 0.2 },
-                  }}
+                  whileHover={{ scale: 1.02, y: -5, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Card 
-                    className={`${colorClasses.border} hover:shadow-lg transition-all duration-300 group bg-white dark:bg-gray-800`}
-                  >
+                  <Card className={`${colorClasses.border} hover:shadow-lg transition-all duration-300 group`}>
                     <CardContent className="p-6">
                       <motion.div
                         className="flex items-center mb-4"
@@ -306,22 +267,14 @@ export default function AboutSection() {
                         transition={{ duration: 0.2 }}
                       >
                         <motion.div
-                          animate={{
-                            rotate: [0, 10, -10, 0],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Number.POSITIVE_INFINITY,
-                            delay: index * 0.5,
-                          }}
+                          animate={{ rotate: [0, 10, -10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
                         >
                           <IconComponent
                             className={`w-6 h-6 ${colorClasses.icon} mr-3 group-hover:scale-110 transition-transform duration-200`}
                           />
                         </motion.div>
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                          {card.title}
-                        </h4>
+                        <h4 className="text-lg font-semibold">{card.title}</h4>
                       </motion.div>
 
                       <motion.div className="flex flex-wrap gap-2" variants={containerVariants}>
@@ -329,18 +282,11 @@ export default function AboutSection() {
                           <motion.div
                             key={skill}
                             variants={badgeVariants}
-                            whileHover={{
-                              scale: 1.1,
-                              y: -2,
-                              transition: { duration: 0.2 },
-                            }}
+                            whileHover={{ scale: 1.1, y: -2, transition: { duration: 0.2 } }}
                             whileTap={{ scale: 0.95 }}
                             initial={{ opacity: 0, y: 20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                            transition={{
-                              duration: 0.4,
-                              delay: 1 + index * 0.1 + skillIndex * 0.05,
-                            }}
+                            transition={{ duration: 0.4, delay: 1 + index * 0.1 + skillIndex * 0.05 }}
                           >
                             <Badge
                               variant="secondary"
@@ -359,22 +305,18 @@ export default function AboutSection() {
           </motion.div>
         </div>
 
+        {/* Call to Action */}
         <motion.div
           className="text-center mt-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg relative overflow-hidden"
           variants={itemVariants}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
         >
+          {/* Animated background pattern */}
           <motion.div
-            className="absolute inset-0 opacity-10 dark:opacity-[0.15]"
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%"],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
+            className="absolute inset-0 opacity-10"
+            animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             style={{
               backgroundImage: "radial-gradient(circle, #3b82f6 1px, transparent 1px)",
               backgroundSize: "20px 20px",
@@ -419,15 +361,15 @@ export default function AboutSection() {
             </motion.button>
 
             <motion.button
-              className="px-6 py-3 border border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors font-medium relative overflow-hidden group"
+              className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors font-medium relative overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <motion.span
-                className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-300"
+                className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
                 initial={false}
               />
-             <NavLink to={'/contact'}><span className="relative z-10">Get In Touch</span> </NavLink> 
+              <NavLink to={'/contact'}><span className="relative z-10">Get In Touch</span> </NavLink> 
             </motion.button>
           </motion.div>
         </motion.div>
