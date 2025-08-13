@@ -35,6 +35,11 @@ const router = createBrowserRouter([
         path: "/projects",
         element: <Projects />,
       },
+      // Change 1: Add route for /Latest-PortFolio
+      {
+        path: "/Latest-PortFolio",
+        element: <Projects />, // Assuming Projects component is intended for this route
+      },
     ],
   },
 ]);
